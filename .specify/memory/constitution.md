@@ -1,50 +1,62 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+SYNC IMPACT REPORT
+==================
+Version change: 0.0.0 → 1.0.0 (initial ratification)
+Modified principles: N/A (initial)
+Added sections:
+  - I. Behavior-Driven Development (BDD)
+  - II. Production Environment Verification
+  - Quality Gates
+  - Governance
+Removed sections: All template placeholders replaced
+Templates requiring updates:
+  - .specify/templates/spec-template.md ✅ (already aligned with BDD via Given/When/Then)
+  - .specify/templates/plan-template.md ✅ (Constitution Check section compatible)
+  - .specify/templates/tasks-template.md ✅ (test-first workflow compatible)
+Follow-up TODOs: None
+-->
+
+# Windsurf Cascade Notifier Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Behavior-Driven Development (BDD) (NON-NEGOTIABLE)
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+All features MUST be specified and implemented using Behavior-Driven Development practices:
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+- **Specification by Example**: Every feature MUST have acceptance criteria written in Given/When/Then format before implementation begins
+- **Ubiquitous Language**: Scenarios MUST use domain language that stakeholders, developers, and tests all share
+- **Living Documentation**: BDD scenarios serve as executable specifications; code MUST satisfy these scenarios exactly
+- **Outside-In Development**: Start from user behavior, derive technical implementation—never the reverse
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Rationale**: BDD ensures alignment between stakeholder expectations and delivered functionality. Scenarios written in natural language prevent misunderstandings and provide verifiable acceptance criteria.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### II. Production Environment Verification (NON-NEGOTIABLE)
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Delivery is verified ONLY when tests pass in production/real environment:
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- **Real Environment Testing**: Acceptance tests MUST execute against production or production-equivalent environment to confirm delivery
+- **No Mock-Only Validation**: Unit tests and mocked integrations are necessary but NOT sufficient for delivery sign-off
+- **Smoke Tests on Deploy**: Every deployment MUST include automated smoke tests that validate core user journeys in the real environment
+- **Observability Required**: Production tests MUST have logging/tracing to diagnose failures without reproduction locally
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+**Rationale**: Features that pass in isolated test environments but fail in production deliver zero value. Real environment verification is the only trustworthy signal that a feature works for users.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Quality Gates
+
+All deliverables MUST pass these gates before being considered complete:
+
+1. **BDD Scenarios Defined**: Acceptance criteria exist in Given/When/Then format
+2. **Scenarios Executable**: Automated tests implement all acceptance scenarios
+3. **Local Tests Pass**: All tests pass in development environment
+4. **Production Tests Pass**: Acceptance tests pass in production/real environment
+5. **Stakeholder Sign-off**: Feature behavior matches scenario expectations
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+- This constitution supersedes all other development practices in this project
+- Amendments require: documented rationale, version increment, updated templates if affected
+- All code reviews MUST verify compliance with both principles
+- Exceptions require explicit justification documented in the PR/commit
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-01-14 | **Last Amended**: 2026-01-14

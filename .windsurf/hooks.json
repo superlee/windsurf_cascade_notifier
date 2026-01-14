@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "post_run_command": [
+      {
+        "command": "bash /Users/chali/.windsurf-notifier/hooks/post_run_command.sh",
+        "show_output": false
+      }
+    ],
+    "post_cascade_response": [
+      {
+        "command": "bash /Users/chali/.windsurf-notifier/hooks/post_cascade_response.sh",
+        "show_output": false
+      }
+    ]
+  }
+}

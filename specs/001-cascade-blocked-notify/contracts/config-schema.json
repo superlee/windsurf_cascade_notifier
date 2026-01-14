@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Notifier Configuration",
+  "description": "User preferences for Cascade notification behavior",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Master enable/disable for all notifications"
+    },
+    "terminal_input": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notify when terminal is waiting for input"
+    },
+    "task_complete": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notify when Cascade completes a task"
+    },
+    "task_error": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notify when Cascade encounters an error"
+    },
+    "approval_required": {
+      "type": "boolean",
+      "default": true,
+      "description": "Notify when Cascade needs user approval"
+    },
+    "sound_enabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Play sound with notifications"
+    },
+    "debounce_seconds": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 5,
+      "description": "Minimum seconds between notifications of same type"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,25 @@
+# Logs
+*.log
+logs/
+
+# Local config (user-specific)
+config.json
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# Test artifacts
+test-results/
+coverage/
+
+# User installation directory (not tracked)
+# ~/.windsurf-notifier/

@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Cascade Hook Input",
+  "description": "JSON structure received by hook scripts via stdin from Cascade",
+  "type": "object",
+  "required": ["agent_action_name", "trajectory_id", "execution_id", "timestamp", "tool_info"],
+  "properties": {
+    "agent_action_name": {
+      "type": "string",
+      "enum": ["post_run_command", "post_cascade_response"],
+      "description": "The hook event name"
+    },
+    "trajectory_id": {
+      "type": "string",
+      "description": "Unique identifier for the overall Cascade conversation"
+    },
+    "execution_id": {
+      "type": "string",
+      "description": "Unique identifier for the single agent turn"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the hook was triggered"
+    },
+    "tool_info": {
+      "type": "object",
+      "description": "Event-specific information",
+      "oneOf": [
+        {
+          "title": "post_run_command",
+          "properties": {
+            "command_line": {
+              "type": "string",
+              "description": "The command that was executed"
+            },
+            "cwd": {
+              "type": "string",
+              "description": "Working directory where command ran"
+            }
+          },
+          "required": ["command_line", "cwd"]
+        },
+        {
+          "title": "post_cascade_response",
+          "properties": {
+            "response": {
+              "type": "string",
+              "description": "Markdown-formatted Cascade response content"
+            }
+          },
+          "required": ["response"]
+        }
+      ]
+    }
+  }
+}
