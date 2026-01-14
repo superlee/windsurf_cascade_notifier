@@ -41,13 +41,14 @@ load_preferences() {
     # Parse config values
     PREF_ENABLED=$(parse_json_value "${config}" "enabled" "true")
     PREF_TERMINAL_INPUT=$(parse_json_value "${config}" "terminal_input" "true")
+    PREF_GIT_COMMANDS=$(parse_json_value "${config}" "git_commands" "false")
     PREF_TASK_COMPLETE=$(parse_json_value "${config}" "task_complete" "true")
     PREF_TASK_ERROR=$(parse_json_value "${config}" "task_error" "true")
     PREF_APPROVAL_REQUIRED=$(parse_json_value "${config}" "approval_required" "true")
     PREF_SOUND_ENABLED=$(parse_json_value "${config}" "sound_enabled" "true")
     PREF_DEBOUNCE_SECONDS=$(parse_json_value "${config}" "debounce_seconds" "5")
     
-    export PREF_ENABLED PREF_TERMINAL_INPUT PREF_TASK_COMPLETE
+    export PREF_ENABLED PREF_TERMINAL_INPUT PREF_GIT_COMMANDS PREF_TASK_COMPLETE
     export PREF_TASK_ERROR PREF_APPROVAL_REQUIRED PREF_SOUND_ENABLED
     export PREF_DEBOUNCE_SECONDS
 }

@@ -34,6 +34,7 @@ Edit `~/.windsurf-notifier/config.json`:
 {
   "enabled": true,
   "terminal_input": true,
+  "git_commands": false,
   "task_complete": true,
   "task_error": true,
   "approval_required": true,
@@ -48,6 +49,7 @@ Edit `~/.windsurf-notifier/config.json`:
 |--------|------|---------|-------------|
 | `enabled` | boolean | `true` | Master switch for all notifications |
 | `terminal_input` | boolean | `true` | Notify when terminal waits for input (passwords) |
+| `git_commands` | boolean | `false` | Notify for git push/pull/fetch/clone commands |
 | `task_complete` | boolean | `true` | Notify when Cascade completes a task |
 | `task_error` | boolean | `true` | Notify when Cascade encounters an error |
 | `approval_required` | boolean | `true` | Notify when Cascade needs approval |
