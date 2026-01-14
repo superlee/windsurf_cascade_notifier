@@ -27,6 +27,21 @@ TERMINAL_INPUT_PATTERNS=(
     "Verification code"
 )
 
+# Check if command is a git remote operation
+# Args: $1 = command line
+# Returns: 0 if git remote command, 1 otherwise
+is_git_remote_command() {
+    local command_line="${1:-}"
+    
+    if [[ "${command_line}" =~ git\ push ]] || \
+       [[ "${command_line}" =~ git\ pull ]] || \
+       [[ "${command_line}" =~ git\ fetch ]] || \
+       [[ "${command_line}" =~ git\ clone ]]; then
+        return 0
+    fi
+    return 1
+}
+
 # Detect if terminal output indicates waiting for input
 # Args: $1 = command line, $2 = output (optional)
 # Returns: 0 if blocking detected, 1 otherwise
@@ -34,13 +49,19 @@ detect_terminal_input() {
     local command_line="${1:-}"
     local output="${2:-}"
     
-    # Check if command is likely to prompt for password
+    # Check git commands - skip if git_commands preference is false
+    if is_git_remote_command "${command_line}"; then
+        if [[ "${PREF_GIT_COMMANDS}" != "true" ]]; then
+            # Git notifications disabled - skip
+            return 1
+        fi
+        # Git notifications enabled - notify
+        return 0
+    fi
+    
+    # Check if command is likely to prompt for password (non-git)
     if [[ "${command_line}" =~ ^sudo\  ]] || \
        [[ "${command_line}" =~ ssh\  ]] || \
-       [[ "${command_line}" =~ git\ push ]] || \
-       [[ "${command_line}" =~ git\ pull ]] || \
-       [[ "${command_line}" =~ git\ fetch ]] || \
-       [[ "${command_line}" =~ git\ clone ]] || \
        [[ "${command_line}" =~ docker\ login ]]; then
         return 0
     fi
