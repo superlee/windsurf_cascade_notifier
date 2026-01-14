@@ -24,7 +24,9 @@ Desktop notifications for Windsurf's Cascade AI assistant.
 This will:
 1. Copy hook scripts to `~/.windsurf-notifier/`
 2. Create default configuration
-3. Set up Windsurf hooks
+3. Configure user-level Windsurf hooks at `~/.codeium/windsurf/hooks.json`
+
+The installer automatically configures hooks at the user level, so they work globally across all your projects.
 
 ## Configuration
 
